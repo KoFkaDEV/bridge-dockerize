@@ -358,7 +358,7 @@ class TONValidator {
         return {
             ...res,
             outMsgs: out_msgs,
-            txhash: rawTxHash,
+            txhash: data.origin_thash || data.bytes32s?.[1],
             fromAddr,
             toChain,
             lt,
