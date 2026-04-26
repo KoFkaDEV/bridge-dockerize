@@ -212,7 +212,7 @@ class TONValidator {
         const govInfo = this.govInfo;
         const REQUEST_SWAP = this.requestSwapABI;
 
-        let txHash = data.origin_thash || (data.bytes32s && data.bytes32s[1]);
+        let txHash = data.origin_thash || data.bytes32s?.[1];
         txHash = Buffer.from(txHash.replace("0x",""), 'hex').toString('base64');
 
         let lt = (data.origin_thash ? data.data : null) || (data.uints && data.uints[3]);
@@ -358,7 +358,7 @@ class TONValidator {
         return {
             ...res,
             outMsgs: out_msgs,
-            txhash: data.origin_thash,
+            txhash: rawTxHash,
             fromAddr,
             toChain,
             lt,
